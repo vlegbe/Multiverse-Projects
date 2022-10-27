@@ -1,0 +1,30 @@
+sequenceDiagram
+
+actor User
+
+User ->> ScooterApp: Add Scooter
+Scooter ->> ScooterApp: Added
+activate ScooterApp
+ScooterApp --> User: Total Price
+deactivate ScooterApp
+
+alt Cancel Purchase
+User ->> ScooterApp: Cancel (User)
+ScooterApp ->> User: Cancel(If age < 17 or Insufficient Funds)
+ScooterApp --> Scooter: Remove
+ScooterApp ->> User: Confirm Cancellation
+else Scooter Broken
+User --> ScooterApp: Cancel
+Scooter --> ScooterApp: Error Message
+ScooterApp --> User: Scooter is Broken, Request Repair
+else Purchase Complete
+User --> ScooterApp: Payment Details
+activate ScooterApp
+ScooterApp --> User: Confirm
+deactivate ScooterApp
+User --> Scooter: Unlock Scooter
+end
+
+
+
+

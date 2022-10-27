@@ -1,0 +1,39 @@
+classDiagram
+
+station <-- scooter
+scooter "1" <-- "1" user
+user <-- serial
+serial <-- charge
+charge <-- isBroken
+isBroken <-- docked
+
+
+class Scooter {
++string station
++string user
++number serial
++number charge
++bool isBroken 
++bool docked 
++rent()
++dock(station)
++recharge()
++requestRepair
+
+}
+
+
+class user {
++string username 
++string password
++number age
+}
+
+class ScooterApp {
++string stations
++string registeredUsers
++register(user)
++logIn(username, password)
++addScooter(location, scooter)
++RemoveScooter(scooterToRemove)
+}
